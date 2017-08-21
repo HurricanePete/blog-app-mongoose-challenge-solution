@@ -144,11 +144,10 @@ describe('Blogs API resource', function() {
 				title: generateTitle(),
 				author: generateAuthorName()
 			}
-			.then(function(req) {
-				return chai.request(app)
-				.post('/posts')
-				.send(badPost)
-			}).should.have.status(500)
+			return chai.request(app)
+			.post('/posts')
+			.send(badPost)
+			.catch(err => err.should.have.status(400))
 		});
 	});
 
